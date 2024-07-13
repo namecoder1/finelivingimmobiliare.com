@@ -1,0 +1,26 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+const { title } = Astro.props;
+
+interface Props {
+  title: string,
+}
+---
+
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>{title} | Fine Living Immobiliare</title>
+  </head>
+  <body class="bg-base-100">
+    <Navbar />
+    <slot/>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,53 @@
+---
+import { sanityClient } from 'sanity:client';
+export const prerender = true;
+import Button from './Button.astro';
+import LatestCard from '../components/LatestCard';
+
+const listings =
+  await sanityClient.fetch(`*[_type == 'listings'] | order(createdAt desc) [0..1] {
+  title,
+  'image': mainImage.asset -> url,
+  description,
+  "slug": slug.current,
+  excerpt,
+  "district": district -> {title,"slug": slug.current},
+  class,
+  code,
+  various,
+  selling,
+  sellPrice,
+  renting,
+  rentPrice
+}`);
+---
+
+<div class="flex flex-col items-center justify-center my-20 gap-10">
+  <div class="flex flex-col">
+    <h1 class="font-headings text-3xl text-center">Novità</h1>
+    <p class="font-text text-center mt-3">Proposte immobiliare più recenti.</p>
+  </div>
+  <div class="flex flex-col lg:flex-row items-center justify-center gap-20 ">
+    {
+      listings.map((property: any) => {
+        return (
+          <LatestCard
+            title={property.title}
+            image={property.image}
+            description={property.description}
+            slug={property.slug}
+            code={property.code}
+            baths={property.various.bath}
+            rooms={property.various.rooms}
+            area={property.various.area}
+            selling={property.selling}
+            sellPrice={property.sellPrice}
+            renting={property.renting}
+            rentPrice={property.rentPrice}
+            />
+        );
+      })
+    }
+  </div>
+  <a class="my-5 bg-white/90 text-secondary flex items-center justify-center font-text font-semibold py-2 px-3 rounded-lg border-2 duration-200 border-secondary hover:bg-transparent hover:text-white hover:border-secondary hover:bg-secondary" href="/immobili"><p>Tutti gli Immobili</p></a>
+</div>

@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import Foto from '../../assets/sabrina-bartolomei.jpeg';
+import FotoTonda from '../../assets/sabrina-bartolomei-rounded.jpeg';
+import Button from '../Button.astro';
+---
+
+<div class="flex flex-col pt-10 lg:pt-0 lg:grid lg:grid-cols-2  my-20 items-center bg-secondary">
+  <div class="text-center text-white mx-8">
+    <h1 class="font-headings text-3xl">Piacere, mi presento..</h1>
+    <p class="font-text mt-3">
+      Mi chiamo Sabrina Bartolomei e sono la proprietaria di Fine Living
+      Immobiliare, faccio questo lavoro da piu di 10 anni e mi dedico con
+      costanza e passione nel mio lavoro, con un occhio di riguardo per i miei
+      clienti.
+    </p>
+    <div class="max-w-fit mt-4 mx-auto">
+      <Button text='Leggi di Più' link='/about' />
+    </div>
+  </div>
+  <div class="flex mx-5 lg:mx-0 items-center justify-end max-w-full my-10 lg:my-0 rounded-[80%]">
+    <Image src={Foto} alt="Immagine della Proprietaria Sabrina Bartolomei" class={`hidden lg:block `} />
+    <Image src={FotoTonda} alt="Immagine della Proprietaria Sabrina Bartolomei" class={`rounded-full block lg:hidden`} />
+  </div>
+</div>

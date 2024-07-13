@@ -1,0 +1,29 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section id="contactMap" class="my-32">
+  <div class="flex-flex-col mx-10">
+  <h1 class="font-headings mb-5 text-3xl">Vieni a trovarci</h1>
+    <div class="flex items-center gap-10 justify-between  flex-col lg:flex-row">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5750.045230207921!2d12.902809176996742!3d43.896798336640416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d19534bd52d59%3A0xe1e11df3e558ee33!2sFine%20Living%20Immobiliare!5e0!3m2!1sit!2sit!4v1720803290733!5m2!1sit!2sit"
+        width="550"
+        height="300"
+        class="w-full lg:w-[900px] h-[350px] lg:h-[300px] mx-10 lg:mx-0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="flex flex-col gap-5 lg:gap-20 text-left justify-center items-start font-text">
+        <div>
+          <p class="text-left">Ci troviamo in <span class="font-bold">Via Giovanni Giolitti 98, a Pesaro</span>.</p>
+          <p>Vieni a trovarci in agenzia! Saremo felici di poterti aiutare sotto qualsiasi aspetto riguardante la compravendita immobiliare</p>
+        </div>
+        <div class="flex flex-col">
+          <h3 class="font-bold">Orari:</h3>
+          <p class="flex items-center justify-center gap-2">Lunedì / Venerdì : <span class="font-semibold ml-10">9:30 / 12:30</span><Icon class={`text-xl mx-4`} name='material-symbols:arrow-right-alt-rounded' /><span class="font-semibold">16 / 19</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

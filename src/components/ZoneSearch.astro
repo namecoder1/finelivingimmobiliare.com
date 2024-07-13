@@ -1,0 +1,37 @@
+---
+export const prerender = true;
+import { sanityClient } from "sanity:client";
+
+const zones = await sanityClient.fetch(`*[_type == 'zones'] [0..1] {
+  'slug': slug.current,
+  title,
+  'image': image.asset -> url
+}`)
+---
+
+<div class="my-20">
+  <div class="text-center flex flex-col items-center justify-center">
+    <h1 class="font-headings text-3xl">Ricerca per Zona:</h1>
+    <p class="font-text mt-2">Risparmia tempo e cerca comodamente</p>
+  </div>
+  <div class="flex md:flex-row flex-col items-center justify-center gap-14 mt-10 my-5">
+    {
+      zones.map((zone: any) => {
+        return (
+        <a href={'/zone/' + zone.slug} class="card bg-base-100 image-full w-80 shadow-xl items-end">
+          <figure>
+            <img
+              src={zone.image}
+              alt={`Immagine della categoria ${zone.title}`}
+               />
+            <div class="absolute inset-0 bg-gray-700/40 rounded-[14px] mix-blend-multiply"></div>
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title font-text text-white">{zone.title}</h2>
+          </div>
+        </a>
+        )
+      })
+    }
+  </div>
+</div>

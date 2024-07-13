@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "./Button.astro";
+---
+
+<div id="services" class="py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-6 ">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h1 class="text-3xl font-headings tracking-tight text-white sm:text-3xl">I nostri Servizi</h1>
+      <p class="mt-3 leading-8 text-white font-text">Consulenza completa per le tue necessità.</p>
+    </div>
+    <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:max-w-none">
+      <dl class="lg:grid flex justify-center items-center flex-wrap lg:grid-rows-1 gap-16 lg:grid-cols-3">
+        <div class="flex flex-col items-center justify-center">
+          <dt class="text-base font-semibold leading-7 text-white flex flex-col items-center justify-center">
+            <Icon name='mdi:message-question-outline' width={150} height={150} />
+            <h2 class="mt-8 font-text">Lascia una richiesta</h2>
+          </dt>
+          <dd class="mt-1 flex flex-auto flex-col text-base leading-7">
+            <div class=" mt-4">
+              <Button link="/servizi/richiedi" text="Scrivici"/>
+            </div>
+          </dd>
+        </div>
+        <div class="flex flex-col items-center justify-center">
+          <dt class="text-base font-semibold leading-7 text-white flex flex-col items-center justify-center">
+            <Icon name='material-symbols:real-estate-agent-outline-rounded' width={150} height={150} />
+            <h2 class="mt-8 font-text">Proponi il tuo Immobile</h2>
+          </dt>
+          <dd class="mt-1 flex flex-auto flex-col text-base leading-7">
+            <div class=" mt-4">
+              <Button link="/servizi/richiedi" text="Scrivici"/>
+            </div>
+          </dd>
+        </div>
+        <div class="flex flex-col items-center justify-center">
+          <dt class="text-base font-semibold leading-7 text-white flex flex-col items-center justify-center">
+            <Icon name='healthicons:money-bag' width={150} height={150} />
+            <h2 class="mt-8 font-text">Valuta il tuo Immobile</h2>
+          </dt>
+          <dd class="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-300">
+            <div class=" mt-4">
+              <Button link="/servizi/valuta" text="Scrivici"/>  
+            </div>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<style>
+  #services {
+    background: rgb(35,136,169);
+    background: linear-gradient(148deg, rgba(35,136,169,1) 0%, rgba(33,79,135,1) 46%, rgba(14,11,54,1) 100%);
+  }
+</style>

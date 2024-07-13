@@ -1,0 +1,48 @@
+---
+import Image from "astro/components/Image.astro";
+import logo from "../assets/logo.png"
+import { Icon } from "astro-icon/components"
+---
+
+<div class="flex flex-col p-5">
+  <div class="flex flex-col items-center justify-center lg:grid lg:grid-cols-2 mx-10">
+    <div class="flex flex-col lg:flex-row items-center justify-left gap-5">
+      <a href="/">
+        <Image src={logo} alt="Logo Fine Living Immobiliare" width={130} height={130} />
+      </a>
+      <div>
+        <ul class="flex flex-col items-center lg:items-start gap-2 text-left">
+          <li class="flex items-center justify-center gap-2"><Icon name="material-symbols:call" width={25} height={25} /><a href="tel:3478429161">+39 347 842 9161</a></li>
+          <li class="flex items-center justify-center gap-2"><Icon name="material-symbols:mail" width={25} height={25} /><a href="mailto:info@finelivingimmobiliare.com">info@finelivingimmobiliare.com</a></li>
+          <li class="flex items-center justify-center gap-2"><Icon name="material-symbols:map" width={25} height={25} /><a href="https://maps.app.goo.gl/25fUn5Gu8eEqh8Vb8">Via G. Giolitti 98, Pesaro (PU), 61122</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col gap-4 mr-5 mt-5 items-center lg:items-end">
+      <ul class="flex gap-3 mt-8 lg:mt-0">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/immobili">Immobili</a></li>
+        <li><a href="/servizi">Servizi</a></li>
+        <li><a href="/contatti">Contatti</a></li>
+      </ul>
+      <div class="flex flex-col items-center my-5 lg:my-0 lg:items-end order-2 lg:order-none">
+        <p>Num REA: PS-196128</p>
+        <p>P.IVA: 02617340415</p>
+      </div>
+      <div class="flex gap-5">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/cookie-policy">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col gap-5 items-center justify-center mt-10 lg:mt-5">
+    <div class="flex items-center justify-center gap-5">
+      <a href="#"><Icon name="mdi:instagram" width={25} height={25} /></a>
+      <a href="#"><Icon name="mdi:facebook" width={25} height={25} /></a>
+      <a href="#"><Icon name="mdi:whatsapp" width={25} height={25} /></a>
+    </div>
+    <p class="text-center">Copyright © 2024 Fine Living Immobiliare - by <a target="_blank" href="https://tobiabartolomei.com">tobiabartolomei.com</a></p>
+  </div>
+</div>
+

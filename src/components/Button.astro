@@ -1,0 +1,40 @@
+---
+const { color, text, icon, iconTitle, iconLeft, link, isFilled, ...rest } = Astro.props;
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  color?: string;
+  link: string;
+  text: string;
+  icon?: string;
+  iconTitle?: string;
+  iconLeft?: boolean;
+  isFilled?: boolean;
+}
+---
+
+<a
+  class:list={[
+    {
+      'bg-white/90 text-black border-gray-400 hover:bg-transparent hover:text-white hover:border-white':
+        isFilled,
+    },
+    {
+      'bg-transparent text-white border-white hover:bg-white/90 hover:text-black hover:border-gray-400':
+        !isFilled,
+    },
+  ]}
+  class='flex items-center justify-center font-text font-semibold py-2 px-3 rounded-lg border-2 duration-200'
+  href={link}
+  {...rest}
+>
+  {
+    icon ? (
+      <p class={`flex items-center justify-center gap-2`} >
+        <Icon class:list={[{'order-2': iconLeft}]} name={icon} size={20} /> {text}
+      </p>
+    ) : (
+      <p>{text}</p>
+    )
+  }
+</a>
