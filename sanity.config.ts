@@ -6,6 +6,9 @@ import { itITLocale } from "@sanity/locale-it-it";
 import { HomeIcon } from '@sanity/icons';
 import { PinIcon } from "@sanity/icons";
 import { SelectIcon } from "@sanity/icons";
+import { BlockquoteIcon } from "@sanity/icons";
+import { LinkIcon } from "@sanity/icons";
+import { OverageIcon } from "@sanity/icons";
 
 const property = {
   type: "document",
@@ -20,6 +23,7 @@ const property = {
   fields: [
     {name: "title", title: "Titolo", type: "string"},
     {name: "description", title: "Descrizione", type: "string"},
+    {name: "text", title: "Testo", type: 'blockContent'},
     {
       name: "slug",
       title: "Slug",
@@ -77,6 +81,18 @@ const property = {
           type: "number",
         },
         {
+          name: "garage",
+          title: 'Posto Auto',
+          type: 'boolean',
+          initialValue: false,
+        },
+        {
+          name: "available",
+          title: 'Disponibilità',
+          type: 'boolean',
+          initialValue: false,
+        },
+        {
           name: "bath",
           title: "Bagni",
           type: "number",
@@ -102,6 +118,11 @@ const property = {
           type: 'number',
         }
       ]
+    },
+    {
+      name: 'location',
+      title: "Posizione",
+      type: 'url'
     },
     {name: "selling", title: "Vendita", type: "boolean", initialValue: false, group: "sell"},
     {
@@ -193,6 +214,83 @@ const classes = {
   ]
 }
 
+const blockContent = {
+  title: 'Testo Articolo',
+  name: 'blockContent',
+  type: 'array',
+  of: [
+    {
+      title: 'Testo',
+      type: 'block',
+      styles: [
+        { title: 'Testo', value: 'normal' },
+        { title: 'H1', value: 'h1' },
+        { title: 'H2', value: 'h2' },
+        { title: 'H3', value: 'h3' },
+      ],
+      lists: [{ title: 'Lista', value: 'bullet' }],
+      marks: {
+        decorators: [
+          { title: 'Grassetto', value: 'strong' },
+          { title: 'Corsivo', value: 'em' },
+        ],
+        annotations: [
+          {
+            title: 'Link Interno',
+            name: 'internalLink',
+            type: 'object',
+            icon: LinkIcon,
+            fields: [
+              {
+                title: 'Reference',
+                name: 'reference',
+                type: 'reference',
+                to: [{ type: 'listings' }],
+              },
+            ],
+          },
+          {
+            name: 'link',
+            type: 'object',
+            title: 'Link Esterno',
+            icon: OverageIcon,
+            fields: [
+              {
+                name: 'href',
+                type: 'url',
+                validation: (Rule: any) =>
+                  Rule.uri({
+                    allowRelative: false,
+                    scheme: ['http', 'https', 'mailto', 'tel'],
+                  }),
+              },
+            ],
+          },
+          {
+            name: 'quote',
+            type: 'object',
+            title: 'Citazione',
+            icon: BlockquoteIcon,
+            fields: [
+              {
+                name: 'text',
+                type: 'text', // <= This can also be a Portable Text field
+                title: '',
+              },
+              {
+                name: 'url',
+                type: 'url',
+                title: 'URL',
+                description: 'Riferimento web',
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+};
+
 export default defineConfig({
   title: "Fine Living - Studio",
 
@@ -205,7 +303,8 @@ export default defineConfig({
       property,
       zones,
       locations,
-      classes
+      classes,
+      blockContent
     ],
   },
 });

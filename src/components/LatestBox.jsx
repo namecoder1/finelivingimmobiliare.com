@@ -1,8 +1,11 @@
-export default function LatestCard({
+export default function LatestBox({  
   title,
+  excerpt,
   image,
   description,
   slug,
+  zoneTitle,
+  districtTitle,
   code,
   baths,
   rooms,
@@ -13,20 +16,17 @@ export default function LatestCard({
   rentPrice,
 }) {
   return (
-    <>
-      <a href={'/immobili/' + slug} className="flex flex-col shadow-2xl w-[350px]">
-        <img
-          src={image}
-          alt={`Immagine di ${title}`}
-          className="max-w-full h-60"
-        />
-        <div className="flex flex-col items-start justify-start mt-3 mx-3">
-          <h1 className="font-text font-semibold text-lg">{title}</h1>
-          <h2 className="font-text ">{description}</h2>
-          <div className="flex flex-col w-full mt-5 mb-1">
-            <div className="flex items-center justify-between">
-              <p className="font-text text-sm">Cod. Agenzia: {code}</p>
-              <p className="font-text text-secondary/90 text-lg">
+    <a href={`/immobili/` + slug} className="flex flex-col xl:flex-row gap-5 my-3 shadow-xl shadow-gray-400">
+      <img src={image} alt={`Immagine dell'Immobile: ${title}`} className="w-full xl:w-[600px]"  loading="lazy" />
+      <div className="flex flex-col mt-3 justify-between px-5 xl:px-0 xl:pr-5">
+        <div>
+          <div className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center w-auto">
+            <div>
+              <h1 className="font-text font-semibold text-xl">{title}</h1>
+              <h2 className="font-text text-md">{description}</h2>
+            </div>
+            <div>
+              <p className="font-text font-semibold text-secondary/90 text-lg">
                 {renting ? (
                   <span>€ {rentPrice} / Mese</span>
                 ) : (!renting && !selling) ? (
@@ -34,12 +34,15 @@ export default function LatestCard({
                 ) : !renting ? (
                   <span>€ {sellPrice}</span>
                 ) : (<span>Da definire</span>)
-              }
-              </p>
+                }
+              </p>  
             </div>
-            <div className="divider my-1" />
-            <div>
-              <ul className="font-text flex items-center justify-between mb-2 mx-4 font-semibold">
+          </div>
+          <p className="mt-10 leading-7 font-text">{excerpt}</p>
+        </div>
+        <div>
+          <div className="divider my-1" />
+          <ul className="font-text flex items-center justify-between mt-3 mb-4 mx-4 font-semibold">
                 <li className="flex gap-2 items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -91,13 +94,11 @@ export default function LatestCard({
                       <path d="M21 3.6v16.8a.6.6 0 0 1-.6.6H3.6a.6.6 0 0 1-.6-.6V3.6a.6.6 0 0 1 .6-.6h16.8a.6.6 0 0 1 .6.6" />
                     </g>
                   </svg>
-                  {area}
+                  {area} mq
                 </li>
               </ul>
-            </div>
-          </div>
         </div>
-      </a>
-    </>
-  );
+      </div>
+    </a>
+  )
 }

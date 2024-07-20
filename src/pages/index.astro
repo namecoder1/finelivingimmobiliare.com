@@ -1,24 +1,42 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro"
-import Image from "astro/components/Image.astro"
-import heroImg from "../assets/heroImg.jpg"
-import HomeAbout from "../components/about/HomeAbout.astro"
-import Services from "../components/Services.astro"
-import ZoneSearch from "../components/ZoneSearch.astro"
-import Latest from "../components/Latest.astro"
-import Map from "../components/Map.astro"
+import MainLayout from '../layouts/MainLayout.astro';
+import Image from 'astro/components/Image.astro';
+import heroImg from '../assets/heroImg.jpg';
+import HomeAbout from '../components/about/HomeAbout.astro';
+import Services from '../components/Services.astro';
+import ZoneSearch from '../components/ZoneSearch.astro';
+import Latest from '../components/Latest.astro';
+import Map from '../components/Map.astro';
 ---
 
-<MainLayout title="HomePage">
+<MainLayout
+  title="HomePage"
+  description="Fine Living Immobiliare è la scelta migliore per il tuo sogno, la tua nuova casa ti aspetta!"
+  ogTitle="Homepage"
+  ogDescription="Fine Living Immobiliare è la scelta migliore per il tuo sogno, la tua nuova casa ti aspetta!"
+  ogType='website'
+  ogUrl=''
+>
   <section class="font-poppins" id="hero">
     <div class="bg-gray-900">
       <div class="relative isolate overflow-hidden pt-4">
-        <Image src={heroImg} alt="Immagine di copertina" quality="low" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-60" />
+        <Image
+          src={heroImg}
+          alt="Immagine di copertina"
+          quality="low"
+          class="absolute inset-0 -z-10 h-full w-full object-cover opacity-60"
+        />
         <div class="mx-auto max-w-3xl py-32 sm:py-40 lg:py-56">
           <div class="text-center">
-            <h1 class="text-3xl font-bold font-headings leading-normal text-white sm:text-4xl sm:leading-[1.2]">La scelta migliore per il tuo sogno:</h1>
+            <h1
+              class="text-3xl font-bold font-headings mx-3 leading-normal text-white sm:text-4xl sm:leading-[1.2]"
+            >
+              La scelta migliore per il tuo sogno:
+            </h1>
             <div class="mt-10 flex items-center justify-center gap-x-6">
-              <p class="text-xl text-white font-text font-semibold">la tua nuova casa ti aspetta</p>
+              <p class="text-xl text-white font-text font-semibold">
+                la tua nuova casa ti aspetta
+              </p>
             </div>
           </div>
         </div>
@@ -31,4 +49,3 @@ import Map from "../components/Map.astro"
   <HomeAbout />
   <Map />
 </MainLayout>
-

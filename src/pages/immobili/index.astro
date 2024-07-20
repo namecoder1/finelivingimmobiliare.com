@@ -1,7 +1,59 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import LatestBox from "../../components/LatestBox"
+
+import { sanityClient } from "sanity:client";
+import Zones from "../../components/Locations.astro";
+export const prerender = true;
+
+const listings = await sanityClient.fetch(`*[_type == 'listings'] | order(createdAt desc) {
+  title,
+  excerpt,
+  'image': mainImage.asset -> url,
+  description,
+  "slug": slug.current,
+  "district": district -> {title,"slug": slug.current, "zone": zone -> {title,"slug": slug.current}},
+  class,
+  code,
+  various,
+  selling,
+  sellPrice,
+  renting,
+  rentPrice
+}`);
+
+
 ---
 
 <MainLayout title="Immobili">
+<div class="mx-10 lg:mx-20 mt-20">
+    <h1 class="font-headings text-3xl">Immobili</h1>
+    <Zones />
+  <div class="flex flex-col gap-8 justify-center items-center my-32">
+    {
+      listings.map((property: any) => {
+        return (
+          <LatestBox 
 
+            title={property.title}
+            excerpt={property.excerpt}
+            image={property.image}
+            description={property.description}
+            slug={property.slug}
+            zoneTitle={property.district.zone.slug}
+            districtTitle={property.district.slug}
+            code={property.code}
+            baths={property.various.bath}
+            rooms={property.various.rooms}
+            area={property.various.area}
+            selling={property.selling}
+            sellPrice={property.sellPrice}
+            renting={property.renting}
+            rentPrice={property.rentPrice}
+          />
+        )
+      })
+    }
+  </div>
+</div>
 </MainLayout>

@@ -1,0 +1,26 @@
+---
+export const prerender = true;
+import { sanityClient } from "sanity:client";
+
+const categories = await sanityClient.fetch(`*[_type == 'locations'] {
+  title,
+  "slug": slug.current,
+  "zone": zone -> {title, "slug": slug.current}
+}`)
+---
+
+<div class="my-10">
+  <div class="divider my-1" />
+  <ul class="flex gap-5 overflow-x-scroll py-2 carousel">
+    {
+      categories.map((category: any) => {
+        return (
+          <li class="carousel-item">
+            <a href={`/immobili/zone/quartieri/` + category.slug} class="py-2 px-4 border-2 border-secondary rounded-xl text-secondary font-text">{category.title}</a>
+          </li>
+        )
+      })
+    }
+  </ul>
+  <div class="divider my-1" />
+</div>

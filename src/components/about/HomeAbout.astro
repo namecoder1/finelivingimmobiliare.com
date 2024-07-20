@@ -5,21 +5,39 @@ import FotoTonda from '../../assets/sabrina-bartolomei-rounded.jpeg';
 import Button from '../Button.astro';
 ---
 
-<div class="flex flex-col pt-10 lg:pt-0 lg:grid lg:grid-cols-2  my-20 items-center bg-secondary">
+<div
+  class="flex flex-col py-10 xl:py-0 xl:grid xl:grid-cols-2 gap-10 xl:gap-0 my-20 items-center bg-secondary"
+>
   <div class="text-center text-white mx-8">
-    <h1 class="font-headings text-3xl">Piacere, mi presento..</h1>
+    <h1 class="font-headings text-3xl">About</h1>
     <p class="font-text mt-3">
-      Mi chiamo Sabrina Bartolomei e sono la proprietaria di Fine Living
-      Immobiliare, faccio questo lavoro da piu di 10 anni e mi dedico con
-      costanza e passione nel mio lavoro, con un occhio di riguardo per i miei
-      clienti.
+      Buongiorno, mi presento, sono Sabrina Bartolomei, titolare dell’agenzia
+      immobiliare Fine Living. Nel 2019 nasce in me la voglia di creare qualcosa
+      di mio, un’ agenzia che avesse “un valore aggiunto” rispetto alle solite
+      realtà presenti sul mercato e che sapesse coniugare la conoscenza e le
+      competenze professionali con la cura del cliente, il rispetto e l’ascolto
+      delle sue necessità. Nasce così la Fine Living immobiliare, grazie alla
+      mia passione per questo settore ed alle mie competenze tecniche specifiche
+      maturate in oltre 10 anni di collaborazione con uno Studio di Ingegneria
+      ed in svariati anni di collaborazione all’interno di altre agenzie
+      immobiliari del territorio.
     </p>
-    <div class="max-w-fit mt-4 mx-auto">
-      <Button text='Leggi di Più' link='/about' />
+    <div class="max-w-fit mt-7 mx-auto">
+      <Button text="Leggi di Più" link="/about" />
     </div>
   </div>
-  <div class="flex mx-5 lg:mx-0 items-center justify-end max-w-full my-10 lg:my-0 rounded-[80%]">
-    <Image src={Foto} alt="Immagine della Proprietaria Sabrina Bartolomei" class={`hidden lg:block `} />
-    <Image src={FotoTonda} alt="Immagine della Proprietaria Sabrina Bartolomei" class={`rounded-full block lg:hidden`} />
+  <div
+    class="flex mx-5 xl:mx-0 items-center justify-end max-w-full my-10 xl:my-0 rounded-[80%] shadow-xl shadow-[#1e1c38] xl:shadow-none"
+  >
+    <Image
+      src={Foto}
+      alt="Immagine della Proprietaria Sabrina Bartolomei"
+      class={`hidden xl:block `}
+    />
+    <Image
+      src={FotoTonda}
+      alt="Immagine della Proprietaria Sabrina Bartolomei"
+      class={`rounded-full block xl:hidden`}
+    />
   </div>
 </div>

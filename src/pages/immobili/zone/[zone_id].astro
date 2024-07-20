@@ -1,0 +1,88 @@
+---
+export const prerender = true;
+import { sanityClient } from 'sanity:client';
+import MainLayout from '../../../layouts/MainLayout.astro';
+import { PortableText } from "astro-portabletext"
+import { capitalize } from "../../../utils"
+
+export async function getStaticPaths() {
+  const zones = await sanityClient.fetch(
+    `*[_type == "zones" && defined(slug.current)]`
+  );
+  return zones.map((zone: any) => {
+    return {
+      params: {
+        zone_id: zone.slug.current,
+      },
+    };
+  });
+}
+
+const { zone_id } = Astro.params;
+const related = await sanityClient.fetch(
+  `*[_type == "listings" &&references (*[_type == "zones" && title == $zone_id]._id)]{
+    title,
+    description,
+    text,
+    "slug": slug.current,
+    "image": mainImage.asset -> url,
+    "district": district -> {title,"slug": slug.current, "zone": zone -> {title,"slug": slug.current, "image": image.asset -> url}},
+    renting,
+    rentPrice,
+    selling,
+    sellPrice,
+    various
+  }`,
+  { zone_id }
+);
+
+const zone = await sanityClient.fetch(`*[_type == "zones" && slug.current == $zone_id][0]{
+  title,
+  "slug": slug.current,
+  "image": image.asset -> url,
+  
+}`, { zone_id})
+
+console.log(related)
+---
+
+<MainLayout 
+  title={capitalize(zone_id)} 
+  description=`Esplora gli immobili in vendita nella zona: ${zone.title}`
+  keywords=`${zone.title}, Fine Living Immobiliare` 
+  robots='allow'
+  ogTitle=`${capitalize(zone_id)} | Fine Living Immobiliare`
+  ogDescription=`Esplora gli immobili in vendita nella zona: ${zone.title}`
+  ogType='website'
+  ogUrl='/immobili/' 
+>
+  <section id="hero">
+    <div class="relative font-poppins">
+      <div class="absolute inset-x-0 bottom-0 h-full bg-gray-800"></div>
+      <div class=" max-w-auto">
+        <div class="relative shadow-xl sm:overflow-hidden ">
+          <div class="absolute inset-0">
+            <img class="h-full w-full object-cover opacity-40" src={zone.image} alt="Immagine di copertina" />
+          </div>
+          <div class="relative px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
+            <h1 class="text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              <span class="block text-white">{zone.title}</span>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+  <div>
+  {
+    related.map((property: any) => {
+      return (
+        <div>
+          {property.title}
+        </div>
+      )
+    })
+  }
+  </div>
+
+</MainLayout>

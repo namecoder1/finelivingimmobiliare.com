@@ -9,7 +9,7 @@ const zones = await sanityClient.fetch(`*[_type == 'zones'] [0..1] {
 }`)
 ---
 
-<div class="my-20">
+<div class="my-32">
   <div class="text-center flex flex-col items-center justify-center">
     <h1 class="font-headings text-3xl">Ricerca per Zona:</h1>
     <p class="font-text mt-2">Risparmia tempo e cerca comodamente</p>
@@ -18,7 +18,7 @@ const zones = await sanityClient.fetch(`*[_type == 'zones'] [0..1] {
     {
       zones.map((zone: any) => {
         return (
-        <a href={'/zone/' + zone.slug} class="card bg-base-100 image-full w-80 shadow-xl items-end">
+        <a href={'immobili/zone/' + zone.slug} class="card bg-base-100 image-full w-80 shadow-xl items-end">
           <figure>
             <img
               src={zone.image}

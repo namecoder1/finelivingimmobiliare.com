@@ -1,10 +1,17 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-const { title } = Astro.props;
+const { title, description, keywords, robots, ogTitle, ogDescription, ogType, ogUrl  } = Astro.props;
 
 interface Props {
   title: string,
+  description: string,
+  keywords?: string,
+  robots?: string,
+  ogTitle: string,
+  ogDescription: string,
+  ogType: string,
+  ogUrl?: string
 }
 ---
 
@@ -13,12 +20,23 @@ interface Props {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta name="author" content="Fine Living Immobiliare" />
+    <meta name="keywords" content={keywords} />
+    <!-- OG Tags -->
+    <meta name="og:title" content={`${ogTitle} | Fine Living Immobiliare`} />
+    <meta name="og:type" content={ogType} />
+    <meta name="og:description" content={ogDescription} />
+    <meta name="og:site_name" content="Fine Living Immobiliare" />
+    <meta name="og:url" content={`https://finelivingimmobiliare.com` + ogUrl} />
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>{title} | Fine Living Immobiliare</title>
   </head>
-  <body class="bg-base-100 min-w-fit overflow-scroll">
+  <body class="bg-base-100">
     <Navbar />
     <slot/>
     <Footer />
