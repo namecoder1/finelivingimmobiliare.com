@@ -2,8 +2,8 @@
 export const prerender = true;
 import { sanityClient } from 'sanity:client';
 import MainLayout from '../../../layouts/MainLayout.astro';
-import { PortableText } from "astro-portabletext"
-import { capitalize } from "../../../utils"
+
+import { capitalize } from "../../../utils";
 
 export async function getStaticPaths() {
   const zones = await sanityClient.fetch(
@@ -19,22 +19,7 @@ export async function getStaticPaths() {
 }
 
 const { zone_id } = Astro.params;
-const related = await sanityClient.fetch(
-  `*[_type == "listings" &&references (*[_type == "zones" && title == $zone_id]._id)]{
-    title,
-    description,
-    text,
-    "slug": slug.current,
-    "image": mainImage.asset -> url,
-    "district": district -> {title,"slug": slug.current, "zone": zone -> {title,"slug": slug.current, "image": image.asset -> url}},
-    renting,
-    rentPrice,
-    selling,
-    sellPrice,
-    various
-  }`,
-  { zone_id }
-);
+
 
 const zone = await sanityClient.fetch(`*[_type == "zones" && slug.current == $zone_id][0]{
   title,
@@ -43,7 +28,7 @@ const zone = await sanityClient.fetch(`*[_type == "zones" && slug.current == $zo
   
 }`, { zone_id})
 
-console.log(related)
+
 ---
 
 <MainLayout 
@@ -73,16 +58,6 @@ console.log(related)
       </div>
     </div>
     </section>
-  <div>
-  {
-    related.map((property: any) => {
-      return (
-        <div>
-          {property.title}
-        </div>
-      )
-    })
-  }
-  </div>
+
 
 </MainLayout>
