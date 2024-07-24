@@ -16,7 +16,7 @@ const categories = await sanityClient.fetch(`*[_type == 'locations'] {
       categories.map((category: any) => {
         return (
           <li class="carousel-item">
-            <a href={`/immobili/zone/quartieri/` + category.slug} class="py-2 px-4 border-2 border-secondary rounded-xl text-secondary font-text">{category.title}</a>
+            <a href={`/immobili/zone/quartieri/` + category.slug} class="py-2 px-4 border-2 border-secondary rounded-xl text-secondary">{category.title}</a>
           </li>
         )
       })

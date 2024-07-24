@@ -2,6 +2,8 @@
 export const prerender = true;
 import { sanityClient } from 'sanity:client';
 import MainLayout from '../../../layouts/MainLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import LatestBox from '../../../components/LatestBox';
 
 import { capitalize } from "../../../utils";
 
@@ -19,16 +21,31 @@ export async function getStaticPaths() {
 }
 
 const { zone_id } = Astro.params;
+const related = await sanityClient.fetch(`*[_type == 'listings' && references(*[_type == 'locations' && references(*[_type == 'zones' && slug.current == $zone_id]._id)]._id)]{
+    title,
+    excerpt,
+    description,
+    code,
+    text,
+    "slug": slug.current,
+    "image": mainImage.asset -> url,
+    "district": district -> {title,"slug": slug.current, "zone": zone -> {title,"slug": slug.current, "image": image.asset -> url}},
+    renting,
+    rentPrice,
+    selling,
+    sellPrice,
+    various,
+}`, { zone_id });
 
+console.log(related)
 
 const zone = await sanityClient.fetch(`*[_type == "zones" && slug.current == $zone_id][0]{
   title,
   "slug": slug.current,
   "image": image.asset -> url,
+  "total": count(*[_type == 'listings' && references(*[_type == 'locations' && references(*[_type == 'zones' && slug.current == $zone_id]._id)]._id)])
   
-}`, { zone_id})
-
-
+}`, { zone_id});
 ---
 
 <MainLayout 
@@ -41,23 +58,53 @@ const zone = await sanityClient.fetch(`*[_type == "zones" && slug.current == $zo
   ogType='website'
   ogUrl='/immobili/' 
 >
-  <section id="hero">
-    <div class="relative font-poppins">
-      <div class="absolute inset-x-0 bottom-0 h-full bg-gray-800"></div>
-      <div class=" max-w-auto">
-        <div class="relative shadow-xl sm:overflow-hidden ">
-          <div class="absolute inset-0">
-            <img class="h-full w-full object-cover opacity-40" src={zone.image} alt="Immagine di copertina" />
-          </div>
-          <div class="relative px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
-            <h1 class="text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              <span class="block text-white">{zone.title}</span>
-            </h1>
-          </div>
+<section id="hero">
+  <div class="relative font-poppins">
+    <div class="absolute inset-x-0 bottom-0 h-full bg-gray-800"></div>
+    <div class=" max-w-auto">
+      <div class="relative shadow-xl sm:overflow-hidden ">
+        <div class="absolute inset-0">
+          <img class="h-full w-full object-cover opacity-40" src={zone.image} alt="Immagine di copertina" />
+        </div>
+        <div class="relative px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
+          <h1 class="text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            <span class="block text-white ">{zone.title}</span>
+          </h1>
         </div>
       </div>
     </div>
-    </section>
+  </div>
+</section>
+<div class="flex flex-col mx-10 lg:mx-20 mt-20 mb-32">
+  <Breadcrumbs firstTitle='Immobili' firstSlug='immobili' secondTitle={zone.title} secondSlug={zone.slug} optional='zone/' />
+  <h1 class="font-headings text-3xl flex flex-col">Immobili nella Zona: <span class="text-4xl mt-1 underline text-secondary">{zone.title}</span></h1>
+  <p class="mt-10 font-semibold bg-secondary/90 w-fit py-2 px-3 rounded-xl text-white">Immobili Totali: <span class="mx-2 font-bold underline underline-offset-2">{zone.total}</span></p>
+  <div class="flex flex-col gap-8 justify-center items-center my-32">
+    {
+      related.map((post: any) => {
+        return (
+          <LatestBox 
+            title={post.title} 
+            excerpt={post.excerpt}
+            image={post.image},
+            description={post.description}
+            slug={post.slug}
+            code={post.code}
+            baths={post.various.bath}
+            rooms={post.various.rooms}
+            area={post.various.area}
+            selling={post.selling}
+            sellPrice={post.sellPrice}
+            renting={post.renting}
+            rentPrice={post.rentPrice}
+          />
+        )
+      })
+    }
+  </div>
+
+</div>
+
 
 
 </MainLayout>

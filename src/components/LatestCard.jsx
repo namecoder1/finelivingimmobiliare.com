@@ -21,12 +21,12 @@ export default function LatestCard({
           className="max-w-full h-60"
         />
         <div className="flex flex-col items-start justify-start mt-3 mx-3">
-          <h1 className="font-text font-semibold text-lg">{title}</h1>
-          <h2 className="font-text ">{description}</h2>
+          <h1 className="font-semibold text-lg">{title}</h1>
+          <h2 className="">{description}</h2>
           <div className="flex flex-col w-full mt-5 mb-1">
             <div className="flex items-center justify-between">
-              <p className="font-text text-sm">Cod. Agenzia: {code}</p>
-              <p className="font-text text-secondary/90 text-lg">
+              <p className="text-sm">Cod. Agenzia: {code}</p>
+              <p className="text-secondary/90 text-lg">
                 {renting ? (
                   <span>€ {rentPrice} / Mese</span>
                 ) : (!renting && !selling) ? (
@@ -39,7 +39,7 @@ export default function LatestCard({
             </div>
             <div className="divider my-1" />
             <div>
-              <ul className="font-text flex items-center justify-between mb-2 mx-4 font-semibold">
+              <ul className="flex items-center justify-between mb-2 mx-4 font-semibold">
                 <li className="flex gap-2 items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

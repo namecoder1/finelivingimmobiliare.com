@@ -20,7 +20,7 @@ const components = {
 
 const PortableTextComponent = ({ value }) => {
   return (
-    <div className="leading-7 flex flex-col prose lg:prose-lg mx-5 font-text">
+    <div className="leading-7 flex flex-col prose lg:prose-lg w-full">
       <PortableText
         value={value}
         components={components}

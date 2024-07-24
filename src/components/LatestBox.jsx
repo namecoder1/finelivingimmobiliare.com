@@ -22,11 +22,11 @@ export default function LatestBox({
         <div>
           <div className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center w-auto">
             <div>
-              <h1 className="font-text font-semibold text-xl">{title}</h1>
-              <h2 className="font-text text-md">{description}</h2>
+              <h1 className="font-semibold text-xl">{title}</h1>
+              <h2 className="text-md">{description}</h2>
             </div>
             <div>
-              <p className="font-text font-semibold text-secondary/90 text-lg">
+              <p className="font-semibold text-secondary/90 text-lg">
                 {renting ? (
                   <span>€ {rentPrice} / Mese</span>
                 ) : (!renting && !selling) ? (
@@ -38,11 +38,12 @@ export default function LatestBox({
               </p>  
             </div>
           </div>
-          <p className="mt-10 leading-7 font-text">{excerpt}</p>
+          <p className="mt-10 leading-7">{excerpt}</p>
         </div>
-        <div>
+        <div className="flex flex-col mt-5">
+          <p className="font-semibold">Codice Agenzia: <span className="underline underline-offset-2">{code}</span></p>
           <div className="divider my-1" />
-          <ul className="font-text flex items-center justify-between mt-3 mb-4 mx-4 font-semibold">
+          <ul className="flex items-center justify-between mt-3 mb-4 mx-4 font-semibold">
                 <li className="flex gap-2 items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
