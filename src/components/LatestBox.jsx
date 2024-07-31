@@ -4,8 +4,6 @@ export default function LatestBox({
   image,
   description,
   slug,
-  zoneTitle,
-  districtTitle,
   code,
   baths,
   rooms,

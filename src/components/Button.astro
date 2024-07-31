@@ -1,5 +1,5 @@
 ---
-const { color, text, icon, iconTitle, iconLeft, link, isFilled, ...rest } = Astro.props;
+const { color, text, icon, iconTitle, iconLeft, link, isFilled, isDark, ...rest } = Astro.props;
 import { Icon } from 'astro-icon/components';
 
 interface Props {
@@ -10,18 +10,27 @@ interface Props {
   iconTitle?: string;
   iconLeft?: boolean;
   isFilled?: boolean;
+  isDark?: boolean;
 }
 ---
 
 <a
   class:list={[
     {
-      'bg-white/90 text-black border-gray-400 hover:bg-transparent hover:text-white hover:border-white':
-        isFilled,
+      'bg-secondary text-white border-secondary hover:bg-white hover:text-secondary':
+        isFilled && isDark,
     },
     {
-      'bg-transparent text-white border-white hover:bg-white/90 hover:text-black hover:border-gray-400':
-        !isFilled,
+      'bg-white text-secondary border-white':
+        isFilled && !isDark,
+    },
+    {
+      'bg-white text-secondary border-secondary hover:bg-secondary hover:text-white hover:border-secondary':
+        !isFilled && isDark,
+    },
+    {
+      'bg-white text-secondary border-secondary hover:bg-secondary hover:text-white hover:border-secondary':
+        !isFilled && !isDark,
     },
   ]}
   class='flex items-center justify-center font-semibold py-2 px-3 rounded-lg border-2 duration-200'

@@ -4,6 +4,7 @@ import LatestBox from "../../components/LatestBox"
 
 import { sanityClient } from "sanity:client";
 import Zones from "../../components/Locations.astro";
+import SearchBar from "../../components/SearchBar";
 export const prerender = true;
 
 const listings = await sanityClient.fetch(`*[_type == 'listings'] | order(createdAt desc) {
@@ -25,23 +26,32 @@ const listings = await sanityClient.fetch(`*[_type == 'listings'] | order(create
 
 ---
 
-<MainLayout title="Immobili">
+<MainLayout 
+  title="Immobili" 
+  description="Scopri una vasta selezione di immobili in vendita sul nostro sito immobiliare. Trova la tua casa ideale con le nostre offerte aggiornate e dettagliate, adatte a ogni esigenza e budget"
+  keywords="Fine Living Immobiliare, Case a Pesaro"
+  robots="allow"
+  ogTitle="Immobili"
+  ogDescription="Scopri una vasta selezione di immobili in vendita sul nostro sito immobiliare. Trova la tua casa ideale con le nostre offerte aggiornate e dettagliate, adatte a ogni esigenza e budget" 
+  ogType="website"
+  ogUrl="/immobili"
+>
 <div class="mx-10 lg:mx-20 mt-20">
     <h1 class="font-headings text-3xl">Immobili</h1>
     <Zones />
+    <div class="max-w-5xl mx-auto">
+      <SearchBar client:load />
+    </div>
   <div class="flex flex-col gap-8 justify-center items-center my-32">
     {
       listings.map((property: any) => {
         return (
           <LatestBox 
-
             title={property.title}
             excerpt={property.excerpt}
             image={property.image}
             description={property.description}
             slug={property.slug}
-            zoneTitle={property.district.zone.slug}
-            districtTitle={property.district.slug}
             code={property.code}
             baths={property.various.bath}
             rooms={property.various.rooms}

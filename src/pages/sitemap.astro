@@ -1,0 +1,77 @@
+---
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+export const prerender = true;
+import { sanityClient } from "sanity:client";
+
+const zones = await sanityClient.fetch(`*[_type == 'zones']{
+  title,
+  slug,
+  "areas": *[_type == 'locations' && references(^._id)]{
+    title,
+    slug,
+    "listings": *[_type == 'listings' && references(^._id)]{
+      title,
+      slug,
+      code,
+    },
+  },
+}`)
+---
+
+<MainLayout 
+  title="Sitemap" 
+  description="In questa pagina sono elencati tutti i link del sito, se ti sei perso dagli un'occhiata."
+  keywords="sitemap, Fine Living Immobiliare"
+  robots="allow"
+  ogTitle="Sitemap | Fine Living Immobiliare"
+  ogDescription="In questa pagina sono elencati tutti i link del sito, se ti sei perso dagli un'occhiata."
+  ogType="website"
+  ogUrl="/sitemap"
+>
+  <section class="flex flex-col mx-10 lg:mx-20 mt-20 mb-32">  
+    <Breadcrumbs firstTitle="Sitemap" firstSlug="sitemap" />
+    <h1 class="font-headings text-3xl">Sitemap</h1>
+    <div class="mt-10">
+      <ul class="menu rounded-box w-full">
+        <li><a href="/">Homepage</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contatti">Contatti</a></li>
+        <li>
+          <a href="/servizi">Servizi</a>
+          <ul>
+            <li><a href="/servizi/valuta">Valuta il tuo Immobile</a></li>
+            <li><a href="/servizi/richiedi">Richiesta Specifica</a></li>
+            <li><a href="/servizi/proponi">Proponi il tuo Immobile</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/immobili">Immobili</a>
+          <ul>
+            {zones.map((zone: any) => (
+              <li>
+                <a href={'/immobili/zone/' + zone.slug.current}{}>{zone.title}</a>
+                <ul>
+                  {zone.areas.map((area: any) => (
+                    <li >
+                      <a href={'/immobili/zone/quartieri/' + area.slug.current}>{area.title}</a>
+                      <ul>
+                        {area.listings.map((listing: any) => (
+                          <li>
+                            <a href={'/immobili/'+ listing.slug.current}>{listing.title} | Cod. Agenzia: {listing.code}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </li>
+        <li><a href="/cookie-policy">Cookie Policy</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+      </ul>
+    </div>
+</section>
+</MainLayout>

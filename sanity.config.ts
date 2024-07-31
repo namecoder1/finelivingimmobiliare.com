@@ -40,7 +40,14 @@ const property = {
       options: {
         hotspot: true,
       }
-
+    },
+    {
+      name: "images",
+      title: "Immagini secondarie",
+      type: "array",
+      of: [
+        {type: "image",}
+      ] 
     },
     {name: "excerpt", title: "Estratto", type: "text", description: "Breve riassunto sulla proprietà"},
     {

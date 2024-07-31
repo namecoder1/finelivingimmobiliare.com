@@ -40,8 +40,6 @@ const post = await sanityClient.fetch(
   }`,
   { post_id }
 );
-
-
 ---
 
 <MainLayout 
@@ -148,15 +146,34 @@ const post = await sanityClient.fetch(
       </div>
     </section>
     <section>
-      <div class="my-20 flex flex-col">
+      <div class="my-32 flex flex-col">
         <h1 class="font-headings text-3xl">Richiedi Informazioni</h1>
-        <div class="flex flex-col xl:grid xl:grid-rows-3 xl:gird-cols-2">
-          <input type="text" id="name" name="name">
-          <input type="text">
-          <input type="text">
-          <input type="text">
-          <input type="text">
-          <input type="text">
+        <div class="flex flex-col mt-5">
+          <form data-netlify="true" netlify-honeypot name="feedback" method="POST" class=" flex flex-col items-center xl:mx-5 xl:grid xl:grid-cols-2 xl:grid-rows-3 gap-x-10 gap-5">
+            <div class="w-full">
+              <p class="hidden"><label>Non cliccare il bottone <input name="bot-field" /></label></p> <!-- Trap for bots -->
+              <input type="text" class="bg-transparent border-2 border-gray-300 text-black w-full px-4 py-2 rounded-md" placeholder="*Nome">
+            </div>  
+            <div class="w-full">
+              <input type="text" class="bg-transparent border-2 border-gray-300 text-black w-full px-4 py-2 rounded-md" placeholder="*Cognome">
+            </div>  
+            <div class="w-full">
+              <input type="email" class="bg-transparent border-2 border-gray-300 text-black w-full px-4 py-2 rounded-md" placeholder="*Email">
+            </div>  
+            <div class="w-full">
+              <input type="text" class="bg-transparent border-2 border-gray-300 text-black w-full px-4 py-2 rounded-md" placeholder="*Numero di Telefono">
+            </div>  
+            <div class="w-full h-full col-span-2">
+              <textarea name="message" class="bg-transparent border-2 border-gray-300 text-black w-full p-4 rounded-md">Sono interessato all'Immobile con Codice Agenzia: {post.code}, ...</textarea>
+            </div>  
+          </form>
+          <div class="flex flex-col xl:flex-row items-center justify-center mt-5 gap-5">
+            <div class="flex gap-2">
+              <input type="checkbox" checked="checked" class="checkbox [--chkbg:white] [--chkfg:green]">
+              <p class="max-w-sm text-xs ">*Compilando e inviando questo modulo di richiesta, autorizzo il trattamento dei miei dati personali ai sensi dell’attuale normativa e confermo di aver preso visione dell’informativa privacy.</p>
+            </div>
+            <a href="/" type="submit" class="py-2 px-4 border-2 border-secondary rounded-xl text-secondary my-3">Invia</a>
+          </div>
         </div>
       </div>
     </section>

@@ -1,5 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import Button from "../components/Button.astro";
+import Map from "../components/Map.astro";
+import ContactForm from "../components/ContactForm.astro";
 ---
 
 <MainLayout 
@@ -10,5 +13,7 @@ import MainLayout from "../layouts/MainLayout.astro";
   ogType='website'
   ogUrl='/contatti'
 >
-  <h1>Contatti</h1>
+  
+<ContactForm />
+<Map />
 </MainLayout>

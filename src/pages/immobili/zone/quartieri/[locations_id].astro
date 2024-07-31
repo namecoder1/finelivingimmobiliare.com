@@ -5,6 +5,7 @@ import MainLayout from '../../../../layouts/MainLayout.astro';
 import { capitalize } from "../../../../utils"
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import LatestBox from '../../../../components/LatestBox';
+import Button from '../../../../components/Button.astro';
 
 export async function getStaticPaths() {
   const locations = await sanityClient.fetch(
@@ -56,13 +57,13 @@ const related = await sanityClient.fetch(
   ogTitle=`${capitalize(locations_id)} | Fine Living Immobiliare`
   ogDescription=`Esplora gli immobili in vendita nella zona: ${zone.title}`
   ogType='website'
-  ogUrl='/immobili/' 
+  ogUrl=`/immobili/zone/quartieri/${locations_id}`
 >
 
   <div class="flex flex-col mx-10 lg:mx-20 mt-20 mb-32">
-    <Breadcrumbs firstTitle='Immobili' firstSlug='immobili' secondTitle={zone.title} secondSlug={zone.slug} optional='zone/quartieri/' />
-    <h1 class="font-headings text-3xl flex flex-col">Immobili nella Zona: <span class="text-4xl mt-1 underline text-secondary">{zone.title}</span></h1>
-    <p class="mt-10 font-semibold bg-secondary/90 w-fit py-2 px-3 rounded-xl text-white">Immobili Totali: <span class="mx-2 font-bold underline underline-offset-2">{zone.total}</span></p>
+    <Breadcrumbs firstTitle='Immobili' firstSlug='immobili' secondTitle={related[0].district.zone.title} secondSlug={`zone/${related[0].district.zone.slug}`} thirdTitle={zone.title} thirdSlug={`zone/quartieri/${zone.slug}`} />
+    <h1 class="font-headings text-3xl flex flex-col">Immobili nella Zona: <span class="text-4xl mt-1 underline text-secondary">{zone.title}</span></h1 >
+    <p class="mt-10 font-semibold bg-secondary/90 w-fit py-2 px-3 rounded-xl text-white">Totali: <span class="mx-2 font-bold underline underline-offset-2">{zone.total}</span></p>
     <div class="flex flex-col gap-8 justify-center items-center my-32">
       {
         related.map((post: any) => {
@@ -85,6 +86,9 @@ const related = await sanityClient.fetch(
           )
         })
       }
+    </div>
+    <div class="flex items-center justify-center">
+      <Button link='/immobili' text='Torna indietro' isDark isFilled />
     </div>
   </div>
 
