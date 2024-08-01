@@ -38,11 +38,11 @@ const listings = await sanityClient.fetch(`*[_type == 'listings'] | order(create
 >
 <div class="mx-10 lg:mx-20 mt-20">
     <h1 class="font-headings text-3xl">Immobili</h1>
-    <Zones />
-    <div class="max-w-5xl mx-auto">
+    <div class="max-w-5xl mx-auto pt-10">
       <SearchBar client:load />
     </div>
-  <div class="flex flex-col gap-8 justify-center items-center my-32">
+    <Zones />
+  <div class="flex flex-col gap-8 justify-center items-center mb-32">
     {
       listings.map((property: any) => {
         return (

@@ -52,9 +52,6 @@ function SearchBar() {
   return (
     <>
       <div>
-        <p className="text-center mb-2 text-xl font-semibold text-white">
-          Cerca
-        </p>
         <p className="bg-secondary p-3 rounded-xl">
           <input
             type="search"
@@ -65,8 +62,8 @@ function SearchBar() {
         </p>
       </div>
       {currentPostsResult ? (
-        <div className="overflow-auto rounded-bl-xl rounded-br-xl -mx-3 mt-4 -mb-3 p-4 max-h-96">
-          <ul className=" flex flex-col gap-y-10">
+        <div className="overflow-auto rounded-md mt-4 -mb-3  max-h-96">
+          <ul className=" flex flex-col gap-y-10 bg-[#EAEBED] px-4 ">
             {currentPostsResult.map((post) => (
               <li key={post._id} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center my-5 gap-5">
                 <div className="">

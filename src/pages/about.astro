@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import sabrinaBartolomei from '../assets/sabrina-bartolomei.jpeg';
 import sabrinaBartolomeiRound from '../assets/sabrina-bartolomei-rounded.jpeg';
 import fotoAgenzia from '../assets/foto-agenzia.jpeg';
+import Button from '../components/Button.astro';
 ---
 
 <MainLayout 
@@ -103,10 +104,9 @@ ogUrl='/about'
           <p class="leading-7 mt-10">
             Contattaci senza indugio e ti accoglieremo con la cordialità e la professionalità che da sempre ci contraddistingue.
           </p>
-          <div class="flex">
-            <a class="my-5 bg-white/90 text-secondary flex items-center justify-center font-semibold py-2 px-3 rounded-lg border-2 duration-200 border-secondary hover:bg-transparent hover:text-secondary hover:border-secondary hover:bg-secondary" href="/contatti"><p>Contattaci</p></a>
+          <div class="flex mt-5">
+            <Button text='Contattaci' link='/contatti' />
           </div>
-  
       </div>
     </div>
   </div>

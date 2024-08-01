@@ -2,6 +2,104 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 ---
 
-<MainLayout title="Richiedi">
+<MainLayout 
+  title="Lascia una richiesta"
+  description="Stai cercando casa e non hai trovato la giusta soluzione dentro al nostro sito? Affidati alla nostra esperienza, compila il form e aspetta la nostra risposta. Ti ricontatteremo appena l’immobile che cerchi sarà disponibile."
+  robots="allow"
+  ogTitle="Lascia una richiesta"
+  ogDescription="Stai cercando casa e non hai trovato la giusta soluzione dentro al nostro sito? Affidati alla nostra esperienza, compila il form e aspetta la nostra risposta. Ti ricontatteremo appena l’immobile che cerchi sarà disponibile."
+  ogType="website"
+  ogUrl="/servizi/richiedi"
+>
   
+<div class="flex flex-col mx-10 lg:mx-20 mt-20 mb-32">
+  <h1 class="font-headings text-3xl mb-3">Lascia una richiesta</h1>
+  <p>Stai cercando casa e non hai trovato la giusta soluzione dentro al nostro sito? Affidati alla nostra esperienza, compila il form qua sotto e aspetta la nostra risposta. Ti ricontatteremo appena l’immobile che cerchi sarà disponibile.</p>
+  <form data-netlify="true" netlify-honeypot name="Richieste Immobiliari" method="POST" class=" mt-16 flex flex-col items-center xl:mx-5 gap-10">
+    <p class="hidden">
+      <label>
+        Don’t fill this out if you’re human: <input name="bot-field" /> <!-- Catch Bots -->
+      </label>  
+    </p>
+    <div class="flex items-center justify-start w-full">
+      <h3 class="font-headings text-xl mt-5">Dati Personali</h3>
+    </div>
+    <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
+      <input required type="text" name="nome" placeholder="*Nome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input type="text" name="cognome" placeholder="Cognome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+    </div>
+    <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
+      <input required type="email" name="Email" placeholder="*Email" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input required type="text" name="Telefono" placeholder="*Cellulare" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+    </div>
+    <div class="flex items-center justify-start w-full">
+      <h3 class="font-headings text-xl mt-5">Dati Immobile</h3>
+    </div>
+    <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
+      <input required type="text" name="Comune e Zona" placeholder="*Comune e Zona" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input type="text" name="Tipologia" placeholder="Tipologia" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+    </div>
+    <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
+      <input required type="text" name="Mq Min" placeholder="*Totale Mq Min." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input type="text" name="Mq Max" placeholder="*Totale Mq Max." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+    </div>
+    <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
+      <input required type="text" name="Prezzo Min" placeholder="*Prezzo Min." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input type="text" name="Prezzo Max" placeholder="*Prezzo Max." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+    </div>
+    <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
+      <select required name="Camere" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full">
+        <option selected>1 Camera</option>
+        <option>2 Camere</option>
+        <option>3 Camere</option>
+        <option>4 Camere</option>
+        <option>5 Camere</option>
+      </select>
+      <select required name="Bagni" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full">
+        <option selected>1 Bagno</option>
+        <option>2 Bagni</option>
+        <option>3 Bagni</option>
+      </select>
+    </div>
+    <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
+      <select required name="Garage" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full">
+        <option selected>Garage Si</option>
+        <option>Garage No</option>
+      </select>
+      <select required name="Locali" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full">
+        <option selected>1 Locale</option>
+        <option>2 Locali</option>
+        <option>3 Locali</option>
+        <option>4 Locali</option>
+        <option>5 Locali</option>
+        <option>6 Locali</option>
+        <option>7 Locali</option>
+        <option>8 Locali</option>
+      </select>    
+    </div>
+    <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
+      <select required name="Classe Energetica" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full">
+        <option selected disabled>Seleziona Classe Energetica</option>
+        <option>Classe Energetica A</option>
+        <option>Classe Energetica B</option>
+        <option>Classe Energetica C</option>
+        <option>Classe Energetica D</option>
+        <option>Classe Energetica E</option>
+        <option>Classe Energetica F</option>
+        <option>Classe Energetica G</option>
+      </select>  
+      <select name="Contratto" class="select w-full" disabled>
+        <option selected>Contratto: Vendita</option>
+      </select>
+    </div>
+    <textarea name="Messaggio" id="text-message" rows="6" class="col-span-2 py-2 px-3 rounded-md border-2 border-gray-400 w-full" placeholder="Scrivi una breve descrizione"></textarea>
+    <div class="flex flex-col sm:flex-row items-center gap-10">
+      <div class="flex items-start justify-center gap-3">
+        <input type="checkbox" name="Informativa" checked="checked" class="checkbox checkbox-secondary" />
+        <p class="text-xs max-w-[250px]">*Compilando e inviando questo modulo di richiesta, autorizzo il trattamento dei miei dati personali ai sensi dell’attuale normativa e confermo di aver preso visione dell’informativa privacy.</p>
+      </div>
+      <button type="submit" class="bg-white text-secondary border-secondary hover:bg-secondary hover:text-white hover:border-secondary flex items-center justify-center font-semibold py-2 px-3 rounded-lg border-2 duration-200">Invia</button>
+    </div>
+  </form>
+</div>
 </MainLayout>
