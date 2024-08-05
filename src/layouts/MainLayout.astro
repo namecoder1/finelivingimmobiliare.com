@@ -1,7 +1,7 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-const { title, description, keywords, robots, ogTitle, ogDescription, ogType, ogUrl  } = Astro.props;
+const { title, description, keywords, robots, ogTitle, ogDescription, ogType, ogUrl, ogImage = "https://fl-immobiliare.netlify.app/ogImage.jpg" } = Astro.props;
 
 interface Props {
   title: string,
@@ -11,7 +11,8 @@ interface Props {
   ogTitle: string,
   ogDescription: string,
   ogType: string,
-  ogUrl?: string
+  ogUrl?: string,
+  ogImage?: string,
 }
 ---
 
@@ -30,10 +31,15 @@ interface Props {
     <meta name="og:description" content={ogDescription} />
     <meta name="og:site_name" content="Fine Living Immobiliare" />
     <meta name="og:url" content={`https://finelivingimmobiliare.com` + ogUrl} />
+    <meta name="og:image" content={ogImage} />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <title>{title} | Fine Living Immobiliare</title>
   </head>
   <body class="bg-base-100 font-text">

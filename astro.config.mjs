@@ -20,5 +20,10 @@ export default defineConfig({
     dataset: PUBLIC_SANITY_STUDIO_DATASET,
     useCdn: true,
     studioBasePath: "/admin"
-  }), icon()]
+  }), icon({
+    include: {
+      mdi: ['gmail', 'instagram', 'facebook', 'whatsapp', 'message-question-outline'],
+      healticons: ['money-bag'],
+    }
+  })]
 });

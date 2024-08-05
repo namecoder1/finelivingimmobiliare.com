@@ -18,55 +18,55 @@ import MainLayout from "../../layouts/MainLayout.astro";
   <form data-netlify="true" netlify-honeypot name="Richieste Immobiliari" method="POST" class=" mt-16 flex flex-col items-center xl:mx-5 gap-10">
     <p class="hidden">
       <label>
-        Don’t fill this out if you’re human: <input name="bot-field" /> <!-- Catch Bots -->
+        Don’t fill this out if you’re human: <input name="bot-field" aria-label="Non Cliccare" /> <!-- Catch Bots -->
       </label>  
     </p>
     <div class="flex items-center justify-start w-full">
       <h3 class="font-headings text-xl mt-5">Dati Personali</h3>
     </div>
     <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-      <input required type="text" name="nome" placeholder="*Nome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
-      <input type="text" name="cognome" placeholder="Cognome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input required type="text" name="nome" placeholder="*Nome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Nome" />
+      <input type="text" name="cognome" placeholder="Cognome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Cognome" />
     </div>
     <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-      <input required type="email" name="Email" placeholder="*Email" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
-      <input required type="text" name="Telefono" placeholder="*Cellulare" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input required type="email" name="Email" placeholder="*Email" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Email" />
+      <input required type="text" name="Telefono" placeholder="*Cellulare" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Telefono" />
     </div>
     <div class="flex items-center justify-start w-full">
       <h3 class="font-headings text-xl mt-5">Dati Immobile</h3>
     </div>
     <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-      <input required type="text" name="Comune e Zona" placeholder="*Comune e Zona" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
-      <input type="text" name="Tipologia" placeholder="Tipologia" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input required type="text" name="Comune e Zona" placeholder="*Comune e Zona" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Comune e Zona" />
+      <input type="text" name="Tipologia" placeholder="Tipologia" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Tipolgia" />
     </div>
     <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-      <input required type="text" name="Mq Min" placeholder="*Totale Mq Min." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
-      <input type="text" name="Mq Max" placeholder="*Totale Mq Max." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input required type="text" name="Mq Min" placeholder="*Totale Mq Min." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Mq Min" />
+      <input type="text" name="Mq Max" placeholder="*Totale Mq Max." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Mq Max" />
     </div>
     <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-      <input required type="text" name="Prezzo Min" placeholder="*Prezzo Min." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
-      <input type="text" name="Prezzo Max" placeholder="*Prezzo Max." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input required type="text" name="Prezzo Min" placeholder="*Prezzo Min." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Prezzo Min" />
+      <input type="text" name="Prezzo Max" placeholder="*Prezzo Max." class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Prezzo Max" />
     </div>
     <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-      <select required name="Camere" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full">
+      <select required name="Camere" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Camere" >
         <option selected>1 Camera</option>
         <option>2 Camere</option>
         <option>3 Camere</option>
         <option>4 Camere</option>
         <option>5 Camere</option>
       </select>
-      <select required name="Bagni" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full">
+      <select required name="Bagni" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Bagni" >
         <option selected>1 Bagno</option>
         <option>2 Bagni</option>
         <option>3 Bagni</option>
       </select>
     </div>
     <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-      <select required name="Garage" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full">
+      <select required name="Garage" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Garage" >
         <option selected>Garage Si</option>
         <option>Garage No</option>
       </select>
-      <select required name="Locali" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full">
+      <select required name="Locali" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Locali" >
         <option selected>1 Locale</option>
         <option>2 Locali</option>
         <option>3 Locali</option>
@@ -78,7 +78,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
       </select>    
     </div>
     <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-      <select required name="Classe Energetica" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full">
+      <select required name="Classe Energetica" class="select py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Classe Energetica" >
         <option selected disabled>Seleziona Classe Energetica</option>
         <option>Classe Energetica A</option>
         <option>Classe Energetica B</option>
@@ -88,14 +88,14 @@ import MainLayout from "../../layouts/MainLayout.astro";
         <option>Classe Energetica F</option>
         <option>Classe Energetica G</option>
       </select>  
-      <select name="Contratto" class="select w-full" disabled>
+      <select name="Contratto" class="select w-full" disabled aria-label="Contratto" >
         <option selected>Contratto: Vendita</option>
       </select>
     </div>
     <textarea name="Messaggio" id="text-message" rows="6" class="col-span-2 py-2 px-3 rounded-md border-2 border-gray-400 w-full" placeholder="Scrivi una breve descrizione"></textarea>
     <div class="flex flex-col sm:flex-row items-center gap-10">
       <div class="flex items-start justify-center gap-3">
-        <input type="checkbox" name="Informativa" checked="checked" class="checkbox checkbox-secondary" />
+        <input type="checkbox" name="Informativa" checked="checked" class="checkbox checkbox-secondary" aria-label="Informativa" />
         <p class="text-xs max-w-[250px]">*Compilando e inviando questo modulo di richiesta, autorizzo il trattamento dei miei dati personali ai sensi dell’attuale normativa e confermo di aver preso visione dell’informativa privacy.</p>
       </div>
       <button type="submit" class="bg-white text-secondary border-secondary hover:bg-secondary hover:text-white hover:border-secondary flex items-center justify-center font-semibold py-2 px-3 rounded-lg border-2 duration-200">Invia</button>

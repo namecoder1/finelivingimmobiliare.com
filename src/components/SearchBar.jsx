@@ -57,6 +57,7 @@ function SearchBar() {
             type="search"
             placeholder="Cerca ora.."
             onChange={handleOnChange}
+            aria-label="Cerca"
             className="w-full p-2 rounded-lg"
           />
         </p>

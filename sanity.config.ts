@@ -42,12 +42,14 @@ const property = {
       }
     },
     {
-      name: "images",
-      title: "Immagini secondarie",
-      type: "array",
+      name: 'gallery',
+      type: 'array',
       of: [
-        {type: "image",}
-      ] 
+        { type: 'image', options: { hotspot: true}}
+      ],
+      options: {
+        layout: 'grid'
+      }
     },
     {name: "excerpt", title: "Estratto", type: "text", description: "Breve riassunto sulla proprietà"},
     {

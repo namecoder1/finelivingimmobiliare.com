@@ -32,6 +32,7 @@ const post = await sanityClient.fetch(
     location,
     "slug": slug.current,
     "image": mainImage.asset -> url,
+    "images": gallery[].asset -> url,
     "district": district -> {title,"slug": slug.current, "zone": zone -> {title,"slug": slug.current}},
     renting,
     rentPrice,
@@ -41,6 +42,9 @@ const post = await sanityClient.fetch(
   }`,
   { post_id }
 );
+
+let list = post.images;
+console.log(list.length)
 ---
 
 <MainLayout 
@@ -73,20 +77,56 @@ const post = await sanityClient.fetch(
         </p>
       </div>
       <img src={post.image} alt={`Foto di: ${post.title}`} width="100" height="100" class="w-full my-5" loading="lazy" />
+      <!-- <div class="carousel w-full">
+        <div id="slide1" class="carousel-item relative w-full">
+          <img
+            src={post.image}
+            class="w-full" />
+          <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+            <a href="#slide4" class="btn btn-circle">❮</a>
+            <a href="#slide2" class="btn btn-circle">❯</a>
+          </div>
+        </div>
+        {
+          post.images.map((image: any) => {
+            return (
+            <div id="slide2" class="carousel-item relative w-full">
+              <img
+                src={image}
+                class="w-full" />
+              <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                <a href="#slide4" class="btn btn-circle">❮</a>
+                <a href="#slide2" class="btn btn-circle">❯</a>
+              </div>
+            </div>
+            )
+          })
+        }
+        <div id="slide2" class="carousel-item relative w-full">
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
+            class="w-full" />
+          <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+            <a href="#slide1" class="btn btn-circle">❮</a>
+            <a href="#slide3" class="btn btn-circle">❯</a>
+          </div>
+        </div>
+
+      </div> -->
       <div class="my-5 grid grid-cols-2 grid-rows-1 gap-20 xl:gap-0 xl:grid-rows-none xl:grid-cols-5 items-start justify-center">
         <div class="max-w-full xl:max-w-8xl col-span-5 xl:col-span-4 xl:mr-5 flex flex-col items-center justify-center">
           <PortableText value={post.text} />
           <p class=" font-bold text-xs mt-10">Per ulteriori informazioni e visite, contattare l'agenzia immobiliare Fine Living Immobiliare al <span class="underline underline-offset-2">+39 347 842 9161</span>. La presente scheda non può essere divulgata ad altre persone ed è soggetta alla Legge relativa alla riservatezza personale. Inoltre il presente documento non costituisce elemento contrattuale ai sensi dell'art. 13 e 14 del regolamento generale sulla protezione dei dati UE 2016/679. .</p>
         </div>
-        <div class="aside p-5 flex flex-col gap-10 max-w-full border justify-start items-start col-span-5 xl:col-span-1">
+        <div class="aside p-5 2xl:p-10 flex flex-col gap-10 max-w-full border justify-start items-start col-span-5 xl:col-span-1">
           <div class="p-auto w-full text-left ">
-            <h3 class=" font-semibold mb-5 text-xl">Caratteristiche</h3>
+            <h3 class=" font-semibold mb-8 text-xl">Caratteristiche</h3>
             <ul class="grid grid-rows-2 grid-cols-3 sm:flex justify-between flex-wrap gap-x-10 gap-y-5 xl:grid xl:grid-cols-2 xl:grid-rows-3 xl:gap-y-10 xl:gap-x-5">
               <li class="flex gap-2  font-semibold">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" ><g fill="none" fill-rule="evenodd"><><path d="M24 0v24H0V0zM12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036c-.01-.003-.019 0-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z" /><path fill="currentColor" d="M7 6a1 1 0 0 1 1-1h1v1a1 1 0 0 0 2 0V5a2 2 0 0 0-2-2H8a3 3 0 0 0-3 3v5H4a2 2 0 0 0-2 2v1a5.994 5.994 0 0 0 2.625 4.961l-.332.332a1 1 0 1 0 1.414 1.414l.876-.875c.454.11.929.168 1.417.168h8c.488 0 .963-.058 1.417-.168l.876.875a1 1 0 0 0 1.414-1.414l-.332-.332A5.994 5.994 0 0 0 22 14v-1a2 2 0 0 0-2-2H7zm-3 7h16v1a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/></></g></svg>
                 <p>{post.various.bath}</p>
               </li>
-              <li class="flex gap-2  font-semibold">
+              <li class="flex gap-2 font-semibold">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" ><path fill="currentColor" d="M7 14c1.66 0 3-1.34 3-3S8.66 8 7 8s-3 1.34-3 3s1.34 3 3 3m0-4c.55 0 1 .45 1 1s-.45 1-1 1s-1-.45-1-1s.45-1 1-1m12-3h-8v8H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4m2 8h-8V9h6c1.1 0 2 .9 2 2Z"/></svg>
                     <p>{post.various.rooms}</p>
               </li>
@@ -143,7 +183,7 @@ const post = await sanityClient.fetch(
           <h1 class="font-headings text-3xl mb-3">Ubicazione</h1>
           <p>Per la tutela dei dati personali, la via indicata dal puntatore sulla mappa è approssimativa. </p>
         </div>
-        <iframe src={post.location} width="600" height="450" style="border:0;" class="w-full" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe title="Mappa dell'Immobile" src={post.location} width="600" height="450" style="border:0;" class="w-full" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </section>
     <section>
@@ -152,21 +192,21 @@ const post = await sanityClient.fetch(
           <form data-netlify="true" netlify-honeypot name="Pagina Immobile" method="POST" class=" mt-10 flex flex-col items-center xl:mx-5 gap-10">
             <p class="hidden">
               <label>
-                Don’t fill this out if you’re human: <input name="bot-field" /> <!-- Catch Bots -->
+                Don’t fill this out if you’re human: <input name="bot-field" aria-label="Non Cliccare" /> <!-- Catch Bots -->
               </label>  
             </p>
             <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-              <input required type="text" name="nome" placeholder="*Nome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
-              <input type="text" name="cognome" placeholder="Cognome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+              <input required type="text" name="nome" placeholder="*Nome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Nome" />
+              <input type="text" name="cognome" placeholder="Cognome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Cognome" />
             </div>
             <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-              <input required type="email" name="Email" placeholder="*Email" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
-              <input required type="text" name="Telefono" placeholder="*Cellulare" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+              <input required type="email" name="Email" placeholder="*Email" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Email" />
+              <input required type="text" name="Telefono" placeholder="*Cellulare" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Telefono" />
             </div>
             <textarea name="Messaggio" id="text-message" class="col-span-2 py-2 px-3 rounded-md border-2 border-gray-400 w-full" >{`Ciao, sono interessato a questo immobile (Cod. Agenzia: ${post.code}), ...`}</textarea>
             <div class="flex flex-col sm:flex-row items-center gap-10">
               <div class="flex items-start justify-center gap-3">
-                <input type="checkbox" name="Informativa" checked="checked" class="checkbox checkbox-secondary" />
+                <input type="checkbox" name="Informativa" checked="checked" class="checkbox checkbox-secondary" aria-label="Informativa" />
                 <p class="text-xs max-w-[250px]">*Compilando e inviando questo modulo di richiesta, autorizzo il trattamento dei miei dati personali ai sensi dell’attuale normativa e confermo di aver preso visione dell’informativa privacy.</p>
               </div>
               <button type="submit" class="bg-white text-secondary border-secondary hover:bg-secondary hover:text-white hover:border-secondary flex items-center justify-center font-semibold py-2 px-3 rounded-lg border-2 duration-200">Invia</button>

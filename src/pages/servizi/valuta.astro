@@ -11,27 +11,27 @@ import MainLayout from "../../layouts/MainLayout.astro";
   ogType="website"
   ogUrl="/servizi/valuta"  
 >
-<div class="flex flex-col mx-10 lg:mx-20 mt-20 mb-32">
+<div class="flex flex-col mx-10 lg:mx-20 mt-20 mb-32" aria-labelledby="">
   <h1 class="font-headings text-3xl mb-3">Valuta il tuo immobile</h1>
   <p>Vuoi sapere quanto vale la tua casa? Affidati alla nostra esperienza, compila il form qua sotto e aspetta la nostra risposta.</p>
   <form data-netlify="true" netlify-honeypot name="Valutazioni Immobiliari" method="POST" class=" mt-16 flex flex-col items-center xl:mx-5 gap-10">
     <p class="hidden">
       <label>
-        Don’t fill this out if you’re human: <input name="bot-field" /> <!-- Catch Bots -->
+        Don’t fill this out if you’re human: <input name="bot-field" aria-label="Non Cliccare"/> <!-- Catch Bots -->
       </label>  
     </p>
     <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-      <input required type="text" name="Nome" placeholder="*Nome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
-      <input type="text" name="Cognome" placeholder="Cognome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input required type="text" name="Nome" placeholder="*Nome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Nome" />
+      <input type="text" name="Cognome" placeholder="Cognome" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Cognome" />
     </div>
     <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-10">
-      <input required type="email" name="Email" placeholder="*Email" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
-      <input required type="text" name="Telefono" placeholder="*Cellulare" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" />
+      <input required type="email" name="Email" placeholder="*Email" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Email" />
+      <input required type="text" name="Telefono" placeholder="*Cellulare" class="py-2 px-3 rounded-md border-2 border-gray-400 w-full" aria-label="Telefono" />
     </div>
     <textarea name="Messaggio" id="text-message" rows="6" class="col-span-2 py-2 px-3 rounded-md border-2 border-gray-400 w-full" placeholder="Scrivi una breve descrizione"></textarea>
     <div class="flex flex-col sm:flex-row items-center gap-10">
       <div class="flex items-start justify-center gap-3">
-        <input type="checkbox" name="Informativa" checked="checked" class="checkbox checkbox-secondary" />
+        <input type="checkbox" name="Informativa" checked="checked" class="checkbox checkbox-secondary" aria-label="Informativa" />
         <p class="text-xs max-w-[250px]">*Compilando e inviando questo modulo di richiesta, autorizzo il trattamento dei miei dati personali ai sensi dell’attuale normativa e confermo di aver preso visione dell’informativa privacy.</p>
       </div>
       <button type="submit" class="bg-white text-secondary border-secondary hover:bg-secondary hover:text-white hover:border-secondary flex items-center justify-center font-semibold py-2 px-3 rounded-lg border-2 duration-200">Invia</button>
