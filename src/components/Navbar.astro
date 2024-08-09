@@ -24,8 +24,8 @@ import SubMenu from "./SubMenu.astro";
               d="M4 6h16M4 12h8m-8 6h16" />
           </svg>
         </div>
-        <ul
-          class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        <ul 
+          class="menu menu-sm dropdown-content bg-base-100 rounded-box  z-30 mt-3 w-52 p-2 shadow">
           <li><a href="/" aria-label="Home">Home</a></li>
           <li><a href="/about" aria-label="About">About</a></li>
           <li><a href="/immobili" aria-label="Immobili">Immobili</a></li>
@@ -41,7 +41,7 @@ import SubMenu from "./SubMenu.astro";
         </ul>
       </div>
       <a href="/" class="mx-4 text-xl">
-        <Image src={logo} alt="Logo Fine Living" width={60} height={60} />
+        <Image src={logo} alt="Logo Fine Living" width={60} height={60} format="avif" quality="mid" />
       </a>
     </div>
     <div class="navbar-end hidden lg:flex">
@@ -53,9 +53,9 @@ import SubMenu from "./SubMenu.astro";
           <details>
             <summary>Servizi</summary>
             <ul class="menu dropdown-content bg-base-100 rounded-box z-[1] w-fit p-2 shadow ">
-              <li><a href="/servizi/valuta">Valuta Immobile</a></li>
-              <li><a href="/servizi/proponi">Proponi Immobile</a></li>
-              <li><a href="/servizi/richiedi">Richiesta Specifica</a></li>
+              <li><a href="/servizi/valuta" aria-label="Valuta Immobile">Valuta Immobile</a></li>
+              <li><a href="/servizi/proponi" aria-label="Proponi Immobile">Proponi Immobile</a></li>
+              <li><a href="/servizi/richiedi" aria-label="Richiesta Specifica">Richiesta Specifica</a></li>
             </ul>
           </details>
         </li>

@@ -29,7 +29,7 @@ const related = await sanityClient.fetch(`*[_type == 'listings' && references(*[
     code,
     text,
     "slug": slug.current,
-    "image": mainImage.asset -> url,
+    "image": gallery[0].asset -> url,
     "district": district -> {title,"slug": slug.current, "zone": zone -> {title,"slug": slug.current, "image": image.asset -> url}},
     renting,
     rentPrice,

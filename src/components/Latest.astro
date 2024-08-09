@@ -7,7 +7,7 @@ import LatestCard from '../components/LatestCard';
 const listings =
   await sanityClient.fetch(`*[_type == 'listings'] | order(createdAt desc) [0..1] {
   title,
-  'image': mainImage.asset -> url,
+  'image': gallery[0].asset -> url,
   description,
   "slug": slug.current,
   code,

@@ -23,7 +23,7 @@ async function getFilteredPosts(searchToken) {
         title,
         description,
         excerpt,
-        "image": mainImage.asset -> url,
+        "image": gallery[0].asset -> url,
         renting,
         rentPrice,
         selling,

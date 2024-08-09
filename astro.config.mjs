@@ -22,7 +22,7 @@ export default defineConfig({
     studioBasePath: "/admin"
   }), icon({
     include: {
-      mdi: ['gmail', 'instagram', 'facebook', 'whatsapp', 'message-question-outline'],
+      mdi: ['gmail', 'instagram', 'facebook', 'whatsapp', 'message-question-outline', 'arrow-right', 'arrow-left' ],
       healticons: ['money-bag'],
     }
   })]

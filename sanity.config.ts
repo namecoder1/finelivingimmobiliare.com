@@ -21,9 +21,19 @@ const property = {
     {name: "info", title: "Informazioni"}
   ],
   fields: [
+    {
+      name: 'gallery',
+      title: "Galleria Immagini",
+      description: "La prima immagine diventa la copertina, dimensioni immagine simili",
+      type: 'array',
+      of: [
+        { type: 'image', options: { hotspot: true}}
+      ],
+      options: {
+        layout: 'grid'
+      }
+    },
     {name: "title", title: "Titolo", type: "string"},
-    {name: "description", title: "Descrizione", type: "string"},
-    {name: "text", title: "Testo", type: 'blockContent'},
     {
       name: "slug",
       title: "Slug",
@@ -33,24 +43,8 @@ const property = {
         maxLength: 96,
       },
     },
-    {
-      name: 'mainImage',
-      title: "Immagine principale",
-      type: "image",
-      options: {
-        hotspot: true,
-      }
-    },
-    {
-      name: 'gallery',
-      type: 'array',
-      of: [
-        { type: 'image', options: { hotspot: true}}
-      ],
-      options: {
-        layout: 'grid'
-      }
-    },
+    {name: "description", title: "Descrizione", type: "string"},
+    {name: "text", title: "Testo", type: 'blockContent'},
     {name: "excerpt", title: "Estratto", type: "text", description: "Breve riassunto sulla proprietà"},
     {
       name: "district",
@@ -74,6 +68,7 @@ const property = {
           { title: 'Classe E', value: 'Classe Energetica E'},
           { title: 'Classe F', value: 'Classe Energetica F'},
           { title: 'Classe G', value: 'Classe Energetica G'},
+          { title: 'In Corso', value: 'Classif. in corso'},
         ]
       }
     },
@@ -129,9 +124,18 @@ const property = {
       ]
     },
     {
-      name: 'location',
-      title: "Posizione",
-      type: 'url'
+      name: 'luogo',
+      group: "info",
+      title: 'Luogo',
+      type: 'document',
+      fields: [
+        {
+          name: 'indirizzo',
+          title: 'Indirizzo',
+          type: 'string',
+          description: 'ES: Via Giovanni Giolitti, Pesaro.',
+        },
+      ],
     },
     {name: "selling", title: "Vendita", type: "boolean", initialValue: false, group: "sell"},
     {
@@ -139,7 +143,7 @@ const property = {
       name: "sellPrice",
       type: "string",
       group: "sell",
-      hidden: ({ parent }) => !parent?.selling,
+      hidden: ({ parent }: { parent: Record<string, any> }) => !parent?.selling,
     },
     {name: "renting", title: "Affitto", type: "boolean", initialValue: false, group: "rent"},
     {
@@ -147,11 +151,21 @@ const property = {
       name: "rentPrice",
       type: "string",
       group: "rent",
-      hidden: ({ parent }) =>!parent?.renting,
+      hidden: ({ parent }: { parent: Record<string, any> }) =>!parent?.renting,
     },
   ],
   preview: {
-    select: {title: "title", subtitle: "district.title", media: "mainImage"},
+    select: {
+      title: 'title',
+      subtitle: 'code',
+    },
+    prepare(selection: any) {
+      const {title, subtitle} = selection;
+      return {
+        title,
+        subtitle: `Codice Agenzia: ${subtitle}`
+      }
+    }
   }
 }
 
