@@ -75,7 +75,7 @@ const post = await sanityClient.fetch(
           }
         </p>
       </div>
-      <Carousel images={post.images} client:load />
+      <Carousel images={post.images} client:only />
       <div class="my-5 grid grid-cols-2 grid-rows-1 gap-20 xl:gap-0 xl:grid-rows-none xl:grid-cols-5 items-start justify-center">
         <div class="max-w-full xl:max-w-8xl col-span-5 xl:col-span-4 xl:mr-5 flex flex-col items-center justify-center">
           <PortableText value={post.text} />

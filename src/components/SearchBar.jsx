@@ -66,7 +66,8 @@ function SearchBar() {
         <div className="overflow-auto rounded-md mt-4 -mb-3  max-h-96">
           <ul className=" flex flex-col gap-y-10 bg-[#EAEBED] px-4 ">
             {currentPostsResult.map((post) => (
-              <li key={post._id} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center my-5 gap-5">
+              <li key={post._id}>
+                <a href={'/immobili/' + post.slug} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center my-5 gap-5">
                 <div className="">
                   <img src={post.image} alt={`Immagine di: ${post.title}`} className="rounded-sm" />
                 </div>
@@ -91,12 +92,13 @@ function SearchBar() {
                   </div>
                   <p >{post.excerpt}</p>
                 </div>
+                </a>
               </li>
             ))}
           </ul>
         </div>
       ) : (
-        <p className="text-center mt-2 text-white">Nessun Risultato</p>
+        <p className="text-center mt-2 text-black">Nessun Risultato</p>
       )}
     </>
   );
