@@ -34,7 +34,7 @@ const Carousel = ({ images }) => {
           </button>
         </div>
       </div>
-      <div className="flex h-[100px] md:h-[150px] xl:h-[190px] overflow-x-scroll justify-center carousel mt-3 space-x-2">
+      <div className="flex  overflow-x-scroll justify-center carousel mt-3 space-x-2">
         {images.map((image, index) => (
           <div
             key={index}
