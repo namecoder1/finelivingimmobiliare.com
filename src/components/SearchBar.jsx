@@ -72,7 +72,7 @@ function SearchBar() {
                   <img src={post.image} alt={`Immagine di: ${post.title}`} className="rounded-sm" />
                 </div>
                 <div className="flex flex-col justify-evenly xl:col-span-2">
-                  <div className="mb-4 flex items-center justify-between">
+                  <div className="mb-4 flex sm:flex-row flex-col items-left justify-between">
                     <div>
                       <h2 className="font-semibold text-lg">{post.title}</h2>
                       <h3>{post.description}</h3>
