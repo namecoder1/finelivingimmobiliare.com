@@ -223,20 +223,6 @@ const locations = {
   ],
 }
 
-const classes = {
-  name: "classes",
-  title: "Classi Energetiche",
-  type: "document",
-  icon: SelectIcon,
-  fields: [
-    {
-      name: "title",
-      title: "Titolo",
-      type: "string",
-    }
-  ]
-}
-
 const blockContent = {
   title: 'Testo Articolo',
   name: 'blockContent',
@@ -326,7 +312,6 @@ export default defineConfig({
       property,
       zones,
       locations,
-      classes,
       blockContent
     ],
   },
