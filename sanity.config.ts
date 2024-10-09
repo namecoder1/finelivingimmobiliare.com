@@ -301,7 +301,7 @@ const blockContent = {
 };
 
 export default defineConfig({
-  title: "Fine Living - Studio",
+  title: "Fine Living | Studio",
 
   projectId: import.meta.env.PUBLIC_SANITY_STUDIO_PROJECT_ID,
   dataset: import.meta.env.PUBLIC_SANITY_STUDIO_DATASET,
